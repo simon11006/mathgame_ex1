@@ -1,67 +1,55 @@
-# Math Shooting Game Blueprint
+# Blueprint: 사칙연산 슈팅 게임
 
-## 1. Overview
+## 개요
 
-A fun and educational shooting game for 1st and 2nd graders. The player controls an airplane, shoots at enemies, and defeats bosses by solving math problems.
+이 프로젝트는 플레이어가 우주선을 조종하여 적을 물리치고, 보스를 만나 사칙연산 문제를 풀어 승리하는 인터랙티브 웹 기반 슈팅 게임입니다. HTML, CSS, JavaScript를 사용하여 만들어졌으며, 외부 프레임워크 없이 순수 웹 기술과 모던 웹 표준(Web Components, Modern CSS/JS)을 활용하여 개발되었습니다.
 
-## 2. Core Gameplay
+## 프로젝트 상세
 
-*   **Player:** Controls an airplane that can move left and right and shoot bullets.
-*   **Enemies:** Basic enemy planes that appear and move down the screen. The player can shoot them down for points.
-*   **Bosses:** Three bosses appear one by one. To defeat a boss, the player must solve a math problem.
-*   **Math Problems:** Simple addition and subtraction problems suitable for 1st and 2nd graders.
+### **1. 핵심 게임플레이 메카닉**
 
-## 3. Visual Design
+- **플레이어**: 사용자는 키보드(좌/우 화살표 또는 'a'/'d' 키)를 사용하여 좌우로 움직이는 우주선을 조종합니다.
+- **총알 발사**: 스페이스바를 누르면 총알이 발사되어 적을 공격할 수 있습니다.
+- **적 생성 및 충돌**: 화면 상단에서 무작위로 적들이 나타나 아래로 내려옵니다. 총알이 적에게 맞으면 적이 사라지고 점수가 오릅니다. 플레이어가 적과 충돌하면 생명력이 감소합니다.
+- **보스 전투**: 특정 점수에 도달하면 강력한 보스가 나타납니다. 보스는 일반 공격으로는 피해를 입지 않습니다.
 
-*   **Theme:** A vibrant and colorful cartoon style to appeal to young children.
-*   **Player:** A friendly-looking airplane.
-*   **Enemies:** Simple, non-threatening enemy planes.
-*   **Bosses:** Larger, more detailed boss characters with expressive faces.
-*   **UI:** Clean and easy-to-read fonts for math problems and game information (score, lives).
+### **2. 사칙연산 퀴즈 시스템**
 
-## 4. Game Flow
+- **퀴즈 트리거**: 보스가 나타나면 게임이 일시 중지되고 사칙연산(덧셈, 뺄셈, 곱셈, 나눗셈) 문제가 화면에 표시됩니다.
+- **문제 해결**: 플레이어는 정답을 입력하여 제출해야 합니다.
+- **보스 데미지**: 정답을 맞히면 보스의 체력이 감소합니다.
+- **오답 패널티**: 오답을 제출하면 플레이어의 생명력이 감소합니다.
+- **나눗셈 로직**: 나눗셈 문제는 항상 정수로 나누어떨어지도록 동적으로 생성됩니다.
 
-1.  **Start Screen:** A simple start screen with a "Start Game" button.
-2.  **Gameplay Loop:**
-    *   The player controls the airplane and shoots at incoming enemies.
-    *   After a certain score or time, the first boss appears.
-3.  **Boss Battle:**
-    *   The boss presents a math problem.
-    *   The game pauses, and the player needs to input the correct answer.
-    *   If the answer is correct, the boss's HP decreases, and the game resumes.
-    *   If the answer is incorrect, the player might lose a life or the boss attacks.
-    *   This repeats until the boss's HP is zero.
-4.  **Next Stage:** After defeating a boss, the game continues with more enemies, leading to the next boss.
-5.  **Game Over:** The game ends when the player loses all their lives. A "Game Over" screen with the final score is shown.
-6.  **Win Screen:** After defeating all three bosses, a "You Win!" screen is displayed.
+### **3. UI/UX 및 게임 상태 관리**
 
-## 5. Technical Implementation
+- **화면**: 게임에는 시작 화면, 게임 오버 화면, 승리 화면, 그리고 실제 게임 플레이 UI가 포함됩니다.
+- **HUD (Heads-Up Display)**: 게임 중에는 점수, 남은 생명력, 보스 체력이 실시간으로 표시됩니다.
+- **상태 전환**: 게임의 각 상태(시작, 플레이, 일시정지, 게임 오버, 승리)는 명확하게 전환되며, 각 상태에 맞는 UI가 사용자에게 표시됩니다.
 
-*   **HTML:** A single `index.html` file with a `<canvas>` element for the game and UI elements for the math problems.
-*   **CSS:** `style.css` for styling the game and UI.
-*   **JavaScript:** `main.js` for all the game logic, including:
-    *   Game loop
-    *   Player and enemy movement/shooting
-    *   Collision detection
-    *   Boss mechanics
-    *   Math problem generation and validation
+### **4. 디자인 및 시각적 요소**
 
-## 6. Features for Current Request
+- **테마**: 전반적으로 어두운 우주 배경의 레트로 게임 테마를 채택했습니다.
+- **폰트**: 'Press Start 2P' 픽셀 폰트를 사용하여 제목과 주요 텍스트에 레트로 느낌을 강조하고, 가독성을 위해 본문에는 'Roboto' 폰트를 사용합니다.
+- **색상 팔레트**: 네이비, 블루, 그리고 강렬한 레드/핑크(e.g., `#1a1a2e`, `#0f3460`, `#e94560`)를 사용하여 시각적 대비와 깊이를 만듭니다.
+- **UI 요소**: 버튼, 입력창 및 모달창은 그림자, 둥근 모서리, 배경 블러 효과(`backdrop-filter`)를 적용하여 현대적이고 세련된 느낌을 줍니다.
+- **애니메이션 및 전환**: 버튼 호버(hover) 시 부드러운 전환 효과를 추가하여 사용자 인터랙션을 향상시켰습니다.
 
-*   **Phase 1: Basic Game Setup**
-    *   Create the HTML structure with a canvas.
-    *   Style the game with a basic background.
-    *   Implement the player's airplane and its movement.
-*   **Phase 2: Shooting and Enemies**
-    *   Implement player shooting.
-    *   Create basic enemies that move down the screen.
-    *   Implement collision detection between bullets and enemies.
-*   **Phase 3: Boss Battles & Math Problems**
-    *   Create three unique bosses.
-    *   Implement the logic for boss appearance.
-    *   Create the UI for displaying math problems and receiving input.
-    *   Integrate the math problem logic with the boss battle.
-*   **Phase 4: Game State & UI**
-    *   Implement game states (start, playing, game over).
-    *   Add UI for score, lives, and boss HP.
-    *   Polish the visual design and add sound effects (optional).
+---
+
+## 현재 실행 계획: "수학 슈팅 게임"을 "사칙연산 게임"으로 변경
+
+**목표**: 기존의 간단한 수학 게임을 덧셈, 뺄셈, 곱셈, 나눗셈을 모두 포함하는 완전한 "사칙연산 게임"으로 업그레이드하고, 시각적 디자인을 개선합니다.
+
+**실행 단계:**
+
+1.  **`index.html` 업데이트**: 웹 페이지의 `<title>`과 시작 화면의 `<h1>` 제목을 "Math Shooting Game"에서 "사칙연산 게임"으로 변경했습니다.
+2.  **`main.js` 로직 수정**:
+    -   `triggerQuiz` 함수를 수정하여 기존의 덧셈, 뺄셈 외에 곱셈과 나눗셈 연산을 추가했습니다.
+    -   나눗셈 문제가 항상 정수 정답을 갖도록, `결과 * 제수 = 피제수` 공식을 활용하여 문제를 생성하는 로직을 구현했습니다.
+3.  **`style.css` 전체 리디자인**:
+    -   Google Fonts에서 'Press Start 2P'와 'Roboto' 폰트를 가져왔습니다.
+    -   어두운 우주 테마의 배경과 색상 팔레트를 적용했습니다.
+    -   게임 컨테이너, 버튼, 모달창 등 모든 UI 요소에 그림자, 둥근 모서리, 블러 효과 등을 추가하여 시각적 품질을 대폭 향상시켰습니다.
+    -   HUD의 가독성을 높이고 전체적인 레이아웃을 개선했습니다.
+4.  **`blueprint.md` 생성**: 프로젝트의 현재 상태와 변경 내역을 문서화하기 위해 이 `blueprint.md` 파일을 작성했습니다. 이 문서는 향후 개발의 기준점이 될 것입니다.

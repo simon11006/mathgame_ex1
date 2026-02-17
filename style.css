@@ -1,21 +1,94 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --bg-color: #1a1a2e;
+  --font-color: #e0e0e0;
+  --grid-pattern-color: rgba(255, 255, 255, 0.02);
+  --container-border-color: #0f3460;
+  --container-shadow-color: rgba(0, 0, 0, 0.5);
+  --container-inset-shadow-color: #16213e;
+  --canvas-bg-color: #000;
+  --ui-bg-color: rgba(22, 33, 62, 0.85);
+  --ui-border-color: rgba(128, 128, 255, 0.3);
+  --ui-shadow-color: rgba(0, 0, 0, 0.37);
+  --header-color: #e94560;
+  --header-shadow-color: #16213e;
+  --button-bg-color: #e94560;
+  --button-text-color: white;
+  --button-hover-bg-color: #ff6e86;
+  --button-shadow-color: rgba(233, 69, 96, 0.4);
+  --button-hover-shadow-color: rgba(233, 69, 96, 0.6);
+  --input-border-color: #0f3460;
+  --input-bg-color: #16213e;
+  --input-text-color: #e0e0e0;
+  --hud-text-color: #fff;
+  --hud-text-shadow-color: #000;
+}
+
+body.light-mode {
+  --bg-color: #f0f8ff;
+  --font-color: #333;
+  --grid-pattern-color: rgba(0, 0, 0, 0.02);
+  --container-border-color: #add8e6;
+  --container-shadow-color: rgba(0, 0, 0, 0.1);
+  --container-inset-shadow-color: #b0c4de;
+  --canvas-bg-color: #fff;
+  --ui-bg-color: rgba(255, 255, 255, 0.8);
+  --ui-border-color: rgba(0, 0, 0, 0.1);
+  --ui-shadow-color: rgba(0, 0, 0, 0.1);
+  --header-color: #ff6347;
+  --header-shadow-color: #d3d3d3;
+  --button-bg-color: #ff6347;
+  --button-text-color: white;
+  --button-hover-bg-color: #ff7f50;
+  --button-shadow-color: rgba(255, 99, 71, 0.4);
+  --button-hover-shadow-color: rgba(255, 99, 71, 0.6);
+  --input-border-color: #add8e6;
+  --input-bg-color: #fff;
+  --input-text-color: #333;
+  --hud-text-color: #333;
+  --hud-text-shadow-color: rgba(255, 255, 255, 0.5);
+}
+
 body {
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background: var(--bg-color);
+  color: var(--font-color);
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, var(--grid-pattern-color) 25%, transparent 25%),
+                      linear-gradient(-45deg, var(--grid-pattern-color) 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, var(--grid-pattern-color) 75%),
+                      linear-gradient(-45deg, transparent 75%, var(--grid-pattern-color) 75%);
+    background-size: 20px 20px;
+    opacity: 0.3;
 }
 
 #game-container {
   position: relative;
-  border: 2px solid black;
+  border: 3px solid var(--container-border-color);
+  border-radius: 15px;
   overflow: hidden;
+  box-shadow: 0 0 30px var(--container-shadow-color), 0 0 15px var(--container-inset-shadow-color) inset;
 }
 
 #game-canvas {
   display: block;
+  background-color: var(--canvas-bg-color);
 }
 
 #ui-layer {
@@ -28,30 +101,92 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
   text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .hidden {
   display: none !important;
 }
 
-#start-screen, #game-over-screen, #win-screen {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  border-radius: 10px;
+#start-screen, #game-over-screen, #win-screen, #quiz-container {
+  background: var(--ui-bg-color);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid var(--ui-border-color);
+  box-shadow: 0 8px 32px 0 var(--ui-shadow-color);
 }
 
-#quiz-container {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
+h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.5em;
+  color: var(--header-color);
+  text-shadow: 3px 3px 0px var(--header-shadow-color);
+  margin-bottom: 30px;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    border: none;
     border-radius: 10px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px var(--button-shadow-color);
+}
+
+button:hover, button:focus {
+    background-color: var(--button-hover-bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px var(--button-hover-shadow-color);
+}
+
+input[type="number"] {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    width: 150px;
+    padding: 10px;
+    margin: 20px;
+    border: 2px solid var(--input-border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
 }
 
 #hud {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  color: black;
-  text-shadow: 1px 1px 2px white;
+  top: 15px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1em;
+  color: var(--hud-text-color);
+  text-shadow: 2px 2px 4px var(--hud-text-shadow-color);
+}
+
+#theme-toggle {
+    font-size: 1.5em;
+    padding: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--hud-text-color);
+    text-shadow: none;
+    box-shadow: none;
+}
+#theme-toggle:hover {
+    transform: scale(1.1);
 }

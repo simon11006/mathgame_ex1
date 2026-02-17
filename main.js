@@ -17,6 +17,36 @@ const finalScoreEl = document.getElementById('final-score');
 const winScoreEl = document.getElementById('win-score');
 const livesEl = document.getElementById('lives');
 const bossHpEl = document.getElementById('boss-hp');
+const themeToggle = document.getElementById('theme-toggle');
+
+// Theme switcher
+function applyTheme(theme) {
+    if (theme === 'light') {
+        document.body.classList.add('light-mode');
+        themeToggle.textContent = '🌙';
+    } else {
+        document.body.classList.remove('light-mode');
+        themeToggle.textContent = '☀️';
+    }
+}
+
+themeToggle.addEventListener('click', () => {
+    const isLight = document.body.classList.contains('light-mode');
+    if (isLight) {
+        localStorage.setItem('theme', 'dark');
+        applyTheme('dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+        applyTheme('light');
+    }
+});
+
+// Load saved theme
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+});
+
 
 // Game settings
 canvas.width = 800;
@@ -239,15 +269,36 @@ function triggerQuiz() {
     gamePaused = true;
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
-    const operator = Math.random() < 0.5 ? '+' : '-';
+    const operators = ['+', '-', '*', '/'];
+    const operator = operators[Math.floor(Math.random() * operators.length)];
 
-    if (operator === '-' && num1 < num2) {
-        // Avoid negative results
-        [num1, num2] = [num2, num1];
+    let question;
+
+    switch (operator) {
+        case '+':
+            correctAnswer = num1 + num2;
+            question = `${num1} + ${num2} = ?`;
+            break;
+        case '-':
+            if (num1 < num2) {
+                [num1, num2] = [num2, num1];
+            }
+            correctAnswer = num1 - num2;
+            question = `${num1} - ${num2} = ?`;
+            break;
+        case '*':
+            correctAnswer = num1 * num2;
+            question = `${num1} * ${num2} = ?`;
+            break;
+        case '/':
+            // Ensure division results in an integer
+            const dividend = num1 * num2;
+            correctAnswer = num1;
+            question = `${dividend} / ${num2} = ?`;
+            break;
     }
-
-    correctAnswer = operator === '+' ? num1 + num2 : num1 - num2;
-    questionEl.textContent = `${num1} ${operator} ${num2} = ?`;
+    
+    questionEl.textContent = question;
 
     quizContainer.classList.remove('hidden');
     answerEl.value = '';
