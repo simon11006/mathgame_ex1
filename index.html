@@ -1,14 +1,42 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
+  <title>Math Shooting Game</title>
   <link href='/style.css' rel='stylesheet'>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
+  <div id="game-container">
+    <canvas id="game-canvas"></canvas>
+    <div id="ui-layer">
+      <div id="quiz-container" class="hidden">
+        <p id="question"></p>
+        <input type="number" id="answer" />
+        <button id="submit-answer">Submit</button>
+      </div>
+      <div id="start-screen">
+        <h1>Math Shooting Game</h1>
+        <button id="start-button">Start Game</button>
+      </div>
+      <div id="game-over-screen" class="hidden">
+        <h1>Game Over</h1>
+        <p>Score: <span id="final-score">0</span></p>
+        <button id="restart-button">Restart</button>
+      </div>
+      <div id="win-screen" class="hidden">
+        <h1>You Win!</h1>
+        <p>Score: <span id="win-score">0</span></p>
+        <button id="win-restart-button">Restart</button>
+      </div>
+      <div id="hud">
+        <p>Score: <span id="score">0</span></p>
+        <p>Lives: <span id="lives">3</span></p>
+        <p>Boss HP: <span id="boss-hp">0</span></p>
+      </div>
+    </div>
+  </div>
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
 </html>
