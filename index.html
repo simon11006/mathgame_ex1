@@ -1,43 +1,96 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>사칙연산 게임</title>
-  <link href='/style.css' rel='stylesheet'>
+  <title>사칙연산 슈팅게임</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
 </head>
 <body>
   <div id="game-container">
-    <canvas id="game-canvas"></canvas>
+    <canvas id="game-canvas" width="800" height="600"></canvas>
     <div id="ui-layer">
-      <div id="quiz-container" class="hidden">
-        <p id="question"></p>
-        <input type="number" id="answer" />
-        <button id="submit-answer">Submit</button>
-      </div>
+
+      <!-- 시작 화면 -->
       <div id="start-screen">
-        <h1>사칙연산 게임</h1>
-        <button id="start-button">Start Game</button>
+        <h1>사칙연산 슈팅</h1>
+        <p class="subtitle">수학 문제를 풀어 보스를 물리치자!</p>
+        <button id="start-button">게임 시작</button>
       </div>
+
+      <!-- 비행기 선택 화면 -->
+      <div id="select-screen" class="hidden">
+        <h2>비행기를 선택하세요</h2>
+        <div id="plane-options">
+          <div class="plane-card" data-plane="0">
+            <canvas class="plane-preview" width="80" height="80"></canvas>
+            <p class="plane-name">팔콘</p>
+            <p class="plane-desc">균형잡힌 기체</p>
+            <p class="plane-stats">속도 ★★★ 공격 ★★★</p>
+          </div>
+          <div class="plane-card" data-plane="1">
+            <canvas class="plane-preview" width="80" height="80"></canvas>
+            <p class="plane-name">스트라이커</p>
+            <p class="plane-desc">빠른 연사 속도</p>
+            <p class="plane-stats">속도 ★★ 공격 ★★★★</p>
+          </div>
+          <div class="plane-card" data-plane="2">
+            <canvas class="plane-preview" width="80" height="80"></canvas>
+            <p class="plane-name">포트리스</p>
+            <p class="plane-desc">높은 체력</p>
+            <p class="plane-stats">속도 ★★ 공격 ★★ HP ★★★★</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 퀴즈 화면 -->
+      <div id="quiz-container" class="hidden">
+        <p id="quiz-label">보스에게 데미지를 주려면 문제를 풀어라!</p>
+        <p id="question"></p>
+        <input type="number" id="answer" placeholder="정답 입력" />
+        <button id="submit-answer">확인</button>
+        <p id="quiz-feedback"></p>
+      </div>
+
+      <!-- 스테이지 클리어 -->
+      <div id="stage-clear" class="hidden">
+        <h2 id="stage-clear-text">STAGE 1 CLEAR!</h2>
+        <p>잠시 후 다음 스테이지가 시작됩니다...</p>
+      </div>
+
+      <!-- 게임 오버 -->
       <div id="game-over-screen" class="hidden">
-        <h1>Game Over</h1>
-        <p>Score: <span id="final-score">0</span></p>
-        <button id="restart-button">Restart</button>
+        <h1>GAME OVER</h1>
+        <p>최종 점수: <span id="final-score">0</span></p>
+        <p>도달 스테이지: <span id="final-stage">1</span></p>
+        <button id="restart-button">다시 시작</button>
       </div>
+
+      <!-- 승리 -->
       <div id="win-screen" class="hidden">
-        <h1>You Win!</h1>
-        <p>Score: <span id="win-score">0</span></p>
-        <button id="win-restart-button">Restart</button>
+        <h1>VICTORY!</h1>
+        <p>모든 보스를 물리쳤습니다!</p>
+        <p>최종 점수: <span id="win-score">0</span></p>
+        <button id="win-restart-button">다시 시작</button>
       </div>
-      <div id="hud">
-        <p>Score: <span id="score">0</span></p>
-        <p>Lives: <span id="lives">3</span></p>
-        <p>Boss HP: <span id="boss-hp">0</span></p>
-        <button id="theme-toggle">☀️</button>
+
+      <!-- HUD -->
+      <div id="hud" class="hidden">
+        <div class="hud-left">
+          <p>점수: <span id="score">0</span></p>
+          <p>HP: <span id="lives-bar"></span></p>
+        </div>
+        <div class="hud-center">
+          <p id="stage-label">STAGE 1</p>
+        </div>
+        <div class="hud-right">
+          <p id="boss-hp-label" class="hidden">BOSS <span id="boss-hp-bar"></span></p>
+        </div>
       </div>
+
     </div>
   </div>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <script defer src="/main.js"></script>
 </body>
 </html>
