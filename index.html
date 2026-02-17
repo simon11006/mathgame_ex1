@@ -20,6 +20,24 @@
         <button id="start-button" class="btn-primary">🎮 게임 시작!</button>
       </div>
 
+      <!-- 학년 선택 화면 -->
+      <div id="grade-screen" class="panel hidden">
+        <h2>📚 몇 학년이에요?</h2>
+        <p class="subtitle">2022 개정교육과정 수학에 맞춰요!</p>
+        <div id="grade-options">
+          <div class="grade-card" data-grade="1">
+            <div class="grade-icon">🌱</div>
+            <p class="grade-title">1학년</p>
+            <p class="grade-desc">9 이하 덧셈·뺄셈<br>→ 18 이하 덧셈·뺄셈<br>→ 100 이하 수</p>
+          </div>
+          <div class="grade-card" data-grade="2">
+            <div class="grade-icon">🌿</div>
+            <p class="grade-title">2학년</p>
+            <p class="grade-desc">세 자리 수 덧셈·뺄셈<br>→ 받아올림·받아내림<br>→ 곱셈구구 (2~9단)</p>
+          </div>
+        </div>
+      </div>
+
       <!-- 비행기 선택 화면 -->
       <div id="select-screen" class="panel hidden">
         <h2>🛩️ 내 비행기 고르기!</h2>
@@ -45,6 +63,7 @@
       <!-- 퀴즈 화면 -->
       <div id="quiz-container" class="panel hidden">
         <p id="quiz-label">📝 문제를 풀면 보스에게 큰 데미지!</p>
+        <p id="quiz-count"></p>
         <p id="question"></p>
         <div id="choices"></div>
         <p id="quiz-feedback"></p>
@@ -86,6 +105,7 @@
           <span id="kill-progress"></span>
         </div>
         <div class="hud-right">
+          <span id="powerup-display"></span>
           <span id="boss-hp-label" class="hidden">👾 보스</span>
           <div id="boss-hp-outer" class="hidden">
             <div id="boss-hp-inner"></div>

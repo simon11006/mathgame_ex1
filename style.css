@@ -19,9 +19,7 @@ body {
   box-shadow: 0 10px 50px rgba(0,0,0,0.3);
 }
 
-#game-canvas {
-  display: block;
-}
+#game-canvas { display: block; }
 
 #ui-layer {
   position: absolute;
@@ -41,18 +39,15 @@ body {
 /* ========== 패널 ========== */
 .panel {
   background: rgba(255, 255, 255, 0.95);
-  padding: 32px 40px;
+  padding: 28px 36px;
   border-radius: 24px;
   border: 4px solid #ffcc02;
   box-shadow: 0 8px 30px rgba(0,0,0,0.2), 0 0 0 6px rgba(255,204,2,0.3);
   text-align: center;
-  max-width: 90%;
+  max-width: 92%;
 }
 
-.title-icon, .clear-icon {
-  font-size: 3em;
-  margin-bottom: 8px;
-}
+.title-icon, .clear-icon { font-size: 3em; margin-bottom: 8px; }
 
 h1 {
   font-family: 'Black Han Sans', sans-serif;
@@ -64,23 +59,19 @@ h1 {
 
 h2 {
   font-family: 'Black Han Sans', sans-serif;
-  font-size: 1.6em;
+  font-size: 1.5em;
   color: #5f27cd;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .subtitle {
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   line-height: 1.6;
 }
 
-p {
-  font-size: 1.1em;
-  color: #444;
-  margin: 4px 0;
-}
+p { font-size: 1.05em; color: #444; margin: 4px 0; }
 
 /* ========== 버튼 ========== */
 .btn-primary {
@@ -97,20 +88,53 @@ p {
   margin-top: 12px;
 }
 
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 25px rgba(255,107,107,0.5);
+.btn-primary:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(255,107,107,0.5); }
+.btn-primary:active { transform: scale(0.97); }
+
+/* ========== 학년 선택 ========== */
+#grade-options {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 8px;
 }
 
-.btn-primary:active {
-  transform: scale(0.97);
+.grade-card {
+  background: linear-gradient(180deg, #f8f9ff, #eef1ff);
+  border: 3px solid #c8d6ff;
+  border-radius: 20px;
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 170px;
+}
+
+.grade-card:hover {
+  border-color: #ff6b6b;
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(255,107,107,0.2);
+}
+
+.grade-icon { font-size: 2.2em; margin-bottom: 6px; }
+
+.grade-title {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 1.4em;
+  color: #5f27cd;
+  margin-bottom: 6px;
+}
+
+.grade-desc {
+  font-size: 0.82em;
+  color: #888;
+  line-height: 1.5;
 }
 
 /* ========== 비행기 선택 ========== */
 #plane-options {
   display: flex;
-  gap: 14px;
-  margin-top: 12px;
+  gap: 12px;
+  margin-top: 10px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -119,10 +143,10 @@ p {
   background: linear-gradient(180deg, #f0f4ff, #e8ecff);
   border: 3px solid #c8d6ff;
   border-radius: 18px;
-  padding: 14px 10px;
+  padding: 12px 8px;
   cursor: pointer;
   transition: all 0.2s;
-  width: 130px;
+  width: 125px;
 }
 
 .plane-card:hover {
@@ -131,35 +155,26 @@ p {
   box-shadow: 0 8px 20px rgba(255,107,107,0.2);
 }
 
-.plane-preview {
-  display: block;
-  margin: 0 auto 6px;
-}
+.plane-preview { display: block; margin: 0 auto 4px; }
 
 .plane-name {
   font-family: 'Black Han Sans', sans-serif;
-  font-size: 1em;
+  font-size: 0.95em;
   color: #5f27cd;
   margin-bottom: 2px;
 }
 
-.plane-desc {
-  font-size: 0.85em;
-  color: #888;
-}
+.plane-desc { font-size: 0.8em; color: #888; }
 
 /* ========== 퀴즈 ========== */
-#quiz-label {
-  color: #ff6b6b;
-  font-size: 1em;
-  margin-bottom: 8px;
-}
+#quiz-label { color: #ff6b6b; font-size: 1em; margin-bottom: 4px; }
+#quiz-count { color: #5f27cd; font-size: 0.9em; font-weight: bold; }
 
 #question {
   font-family: 'Black Han Sans', sans-serif;
-  font-size: 2.4em;
+  font-size: 2.6em;
   color: #5f27cd;
-  margin: 12px 0 16px;
+  margin: 12px 0 14px;
 }
 
 #choices {
@@ -181,29 +196,15 @@ p {
   transition: all 0.15s;
 }
 
-.choice-btn:hover {
-  border-color: #ff6b6b;
-  background: #fff5f5;
-  transform: scale(1.04);
-}
-
-.choice-btn.correct {
-  border-color: #2ecc71;
-  background: #d5f5e3;
-  color: #27ae60;
-}
-
-.choice-btn.wrong {
-  border-color: #e74c3c;
-  background: #fde8e8;
-  color: #e74c3c;
-}
+.choice-btn:hover { border-color: #ff6b6b; background: #fff5f5; transform: scale(1.04); }
+.choice-btn.correct { border-color: #2ecc71; background: #d5f5e3; color: #27ae60; }
+.choice-btn.wrong { border-color: #e74c3c; background: #fde8e8; color: #e74c3c; }
 
 #quiz-feedback {
   font-family: 'Black Han Sans', sans-serif;
-  font-size: 1.3em;
+  font-size: 1.2em;
   min-height: 1.5em;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 /* ========== HUD ========== */
@@ -215,36 +216,23 @@ p {
   align-items: center;
   padding: 10px 14px;
   font-family: 'Jua', sans-serif;
-  font-size: 0.95em;
+  font-size: 0.9em;
   color: #fff;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%);
   pointer-events: none;
 }
 
-.hud-left, .hud-center, .hud-right {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
+.hud-left, .hud-center, .hud-right { display: flex; flex-direction: column; gap: 2px; }
 .hud-center { align-items: center; }
 .hud-right { align-items: flex-end; }
 
-#stage-label {
-  font-family: 'Black Han Sans', sans-serif;
-  color: #ffcc02;
-  font-size: 1.1em;
-}
-
-#kill-progress {
-  font-size: 0.8em;
-  color: #aaa;
-}
+#stage-label { font-family: 'Black Han Sans', sans-serif; color: #ffcc02; font-size: 1.1em; }
+#kill-progress { font-size: 0.8em; color: #ccc; }
+#powerup-display { font-size: 0.85em; color: #ffcc02; }
 
 #boss-hp-outer {
-  width: 80px;
-  height: 10px;
+  width: 80px; height: 10px;
   background: rgba(255,255,255,0.3);
   border-radius: 5px;
   overflow: hidden;
@@ -257,17 +245,15 @@ p {
   transition: width 0.3s;
 }
 
-/* ========== 스테이지 클리어 ========== */
-#stage-clear h2 {
-  color: #2ecc71;
-}
+#stage-clear h2 { color: #2ecc71; }
 
 /* ========== 반응형 ========== */
 @media (max-width: 500px) {
-  #game-canvas { width: 100vw; height: auto; }
-  .panel { padding: 20px 24px; }
+  .panel { padding: 18px 20px; }
   h1 { font-size: 1.8em; }
+  h2 { font-size: 1.2em; }
   #question { font-size: 2em; }
-  .plane-card { width: 100px; padding: 10px 6px; }
+  .plane-card { width: 100px; padding: 8px 4px; }
+  .grade-card { width: 140px; padding: 12px 10px; }
   .choice-btn { font-size: 1.2em; padding: 10px 8px; }
 }
